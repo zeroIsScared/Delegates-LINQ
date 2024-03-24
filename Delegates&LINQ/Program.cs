@@ -10,7 +10,8 @@ internal class Program
     {
 
 
-        CalculatePoints calculatePoints = delegate(Post post, User user) { 
+        CalculatePoints calculatePoints = (Post post, User user) => 
+        { 
         
             if (user.BirthDate.Year > 1990 && user.Points < 5 && post.Description.Contains("story"))
             {
@@ -24,7 +25,7 @@ internal class Program
 
         };
 
-        DisplayResult displayResult = delegate (string fullName, string postTitle, int points)
+        DisplayResult displayResult = (string fullName, string postTitle, int points) =>
         {
             Console.WriteLine($"{fullName} with the post titled {postTitle} had earned {points} points.");
         };
