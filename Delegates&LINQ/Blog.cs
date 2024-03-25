@@ -27,7 +27,7 @@ namespace Delegates_LINQ
              int points = calculatePoints(post, user);
 
             displayResult(user.FullName, post.Title, points);
-            Console.WriteLine($"Your post descriprion contains {post.Description.DescriptionCountWords()} words, please make sure it is no longer than 5 words.");
+            Console.WriteLine($"Your post descriprion contains {post.DescriptionCountWords()} words, please make sure it is no longer than 5 words.");
         }       
     }
 }
