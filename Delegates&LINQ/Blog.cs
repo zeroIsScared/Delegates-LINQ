@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace Delegates_LINQ
         public delegate int CalculatePoints(Post post, User user);
 
         public delegate void DisplayResult(string fullName, string postTitle, int points);
-        public static void PublishPost (string fullName, CalculatePoints calculatePoints, DisplayResult displayResult ) 
+        public static void PublishPost (string fullName, Func<Post, User, int> calculatePoints, Action<string, string, int> displayResult ) 
         {
             var users = ResourceManager.LoadUserData();
             var userResult = users.Where(x => x.FullName == fullName).ToList();
@@ -24,10 +25,10 @@ namespace Delegates_LINQ
                         select new Post { Title = p.Title, Description = p.Description, Author = p.Author, IsPosted = p.IsPosted }).ToList();
             var post = postResult[0];
 
-             int points = calculatePoints(post, user);
+            int points = calculatePoints(post, user);            
 
             displayResult(user.FullName, post.Title, points);
-            Console.WriteLine($"Your post descriprion contains {post.Description.DescriptionCountWords()} words, please make sure it is no longer than 5 words.");
+            Console.WriteLine($"Your post descriprion contains {post.DescriptionCountWords()} words, please make sure it is no longer than 5 words.");
         }       
     }
 }

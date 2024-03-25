@@ -8,9 +8,9 @@ namespace Delegates_LINQ
 {
     public static class MyExtensions
     {
-        public static int DescriptionCountWords( this string description)
+        public static int DescriptionCountWords( this Post post)
         {
-            return description.Split(new string[] { "?", ".", " " }, StringSplitOptions.RemoveEmptyEntries).Length;            
+            return post.Description.Split(new string[] { "?", ".", " " }, StringSplitOptions.RemoveEmptyEntries).Length;            
         }
     }
 }
